@@ -1,0 +1,172 @@
+<!doctype html><html><head>
+<title>This is an HTML canvas</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body><h1>Cella Ant Project 1</h1>
+<h4>Time-stamp: <2019-09-25 20:11:03 Anthony Saytu Pierce Eric></h4>
+<img id="ant" width="0" height="0" src="ant" alt="the ant">
+<canvas id="grid" width="700" height="700"></canvas>
+
+</body>
+<script src="../assets/draw-stuff.js"></script>
+<script src="ant"></script>
+<script>
+// after "Introducing JavaScript Game Development" by Stuart.
+
+// =====================================================  draw_title ====
+// Draw filled rect.
+function draw_title( context )
+{
+    context.save( );
+    context.fillStyle = 'lightgrey';
+    context.font = "30px Arial";
+
+    context.restore( );
+}
+
+function langAnt(context)
+    {
+var i;
+var ANTUP = 0; // going from 0 to three and coming back to 0
+var ANTRIGHT = 1;
+var ANTDOWN = 2;
+var ANTLEFT = 3;
+var dir = 0;
+ var x = 350; // the starting point in the middle of the entire grid
+ var y = 350;
+
+function moveForward() {
+  if (dir == ANTUP) {
+  y =   y-10; // add by ten will get you to the next cell without getting out of bounds
+  } else if (dir == ANTRIGHT) {
+    x = x+10;
+  } else if (dir == ANTDOWN) {
+    y =y+10;
+  } else if (dir == ANTLEFT) {
+    x = x-10;
+  }
+}
+ function turnRight()
+        {
+dir ++; // incrementing dir otherwise the code will crash without it
+
+if (dir > ANTLEFT)
+    {
+        dir = ANTUP;
+    }
+        }
+
+function turnLeft()
+        {
+
+ dir--;
+  if (dir < ANTUP) {
+    dir = ANTLEFT;
+  }
+
+        }
+var pixelBlack = context.createImageData(9,9);
+
+    for (i = 0; i < pixelBlack.data.length; i += 4)
+        {
+            pixelBlack.data[i+0] = 0; // javascript holding colors in the array
+            pixelBlack.data[i+1] = 0;
+            pixelBlack.data[i+2] = 0;
+            pixelBlack.data[i+3] = 255;
+        }
+
+
+var pixelRed = context.createImageData(9,9);
+
+    for (i = 0; i < pixelRed.data.length; i += 4)
+        {
+            pixelRed.data[i+0] = 255;
+            pixelRed.data[i+1] = 0;
+            pixelRed.data[i+2] = 0;
+            pixelRed.data[i+3] = 255;
+        }
+
+
+
+   var pixelYellow = context.createImageData(9,9);
+
+    for (i = 0; i < pixelYellow.data.length; i += 4)
+        {
+            pixelYellow.data[i+0] = 255;
+            pixelYellow.data[i+1] = 255;
+            pixelYellow.data[i+2] = 0;
+            pixelYellow.data[i+3] = 255;
+        }
+
+
+    var pixelBlue = context.createImageData(9,9);
+
+    for (i = 0; i < pixelBlue.data.length; i += 4)
+        {
+            pixelBlue.data[i+0] = 0;
+            pixelBlue.data[i+1] = 0;
+            pixelBlue.data[i+2] = 255;
+            pixelBlue.data[i+3] = 255;
+        }
+
+
+
+    var t;
+
+        for(t = 0; t < 7000 ; t++)
+     {
+
+    if (context.getImageData(x+1,y+1,10,10).data[0] == 0 && context.getImageData(x+1,y+1,10,10).data[1] == 0 && context.getImageData(x+1,y+1,10,10).data[2] == 0){
+         context.putImageData(pixelRed,x,y);
+        turnLeft();
+        moveForward();
+
+
+    }
+
+     if (context.getImageData(x+1,y+1,10,10).data[0] == 255 && context.getImageData(x+1,y+1,10,10).data[1] == 0 && context.getImageData(x+1,y+1,10,10).data[2] == 0){
+         context.putImageData(pixelYellow,x,y);
+    turnLeft();
+
+         moveForward();
+
+     }
+
+
+
+     if (context.getImageData(x+1,y+1,10,10).data[0] == 255 && context.getImageData(x+1,y+1,10,10).data[1] == 255 && context.getImageData(x+1,y+1,10,10).data[2] == 0){
+         context.putImageData(pixelBlue,x,y);
+
+   turnRight();
+
+         moveForward();
+
+
+
+     }
+
+    if (context.getImageData(x+1,y+1,10,10).data[0] == 0 && context.getImageData(x+1,y+1,10,10).data[1] == 0 && context.getImageData(x+1,y+1,10,10).data[2] == 255){
+         context.putImageData(pixelBlack,x,y);
+
+    turnRight();
+         moveForward();
+
+       }
+
+
+
+     }
+
+    }
+// =====================================================  Main ====
+  var canvas = document.getElementById( "grid" );
+  var context = canvas.getContext( "2d" );
+
+  // Draw a grid
+  draw_grid( context, 10, 10, 'white', 'yellow' );
+  draw_title( context );
+
+langAnt(context);
+
+</script>
+</html>
