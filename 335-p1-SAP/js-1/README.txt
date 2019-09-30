@@ -16,14 +16,27 @@ This project is to write a program to display the generational progress of Turk 
 ## Intro
 
 Additional notes about algorithm used:
-Insert here
 
 ### Prerequisites/ External Requirements
 
-(What things you need to install the software and how to install them)
+An IDE and text editor of your choice
+Ability to connect to the internet as well
 
+Atom text editor installation example:
+To check if atom was installed type the following into terminal
 ```
-Example code for how to install
+$ which atom
+```
+If atom was installed you will see:
+```
+$ which atom
+/usr/local/bin/atom
+$
+```
+If atom didn't install you will just see:
+```
+$ which atom
+$
 ```
 
 ### Setup and Installation
@@ -49,4 +62,8 @@ Explain what bugs there are if any
 ```
 The only bug our project has is the beginning of our program the screen will stay black and a few seconds it will result in the symmetrical shape
 ```
+
+## Contents(zip file)
+
+* [Project1-SAP](https://github.com/Pyerce/335-p1-SAP) - Project link in zip file
 
